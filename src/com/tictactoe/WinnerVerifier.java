@@ -20,11 +20,12 @@ package com.tictactoe;
  * @author Kostya
  * @link https://github.com/kostia71/tic-tac-toe-2.git
  */
-public final class Launcher {
+public class WinnerVerifier {
+    public boolean isUserWin() {
+        return false;
+    }
 
-    public static void main(String[] args) {
-        final Game game = new Game(new DataPrinter(), new ComputerMove(), new UserMove(), new WinnerVerifier(), new DrowVerifier()
-        );
-        game.play();
+    public boolean isComputerWin() {
+        return false;
     }
 }
