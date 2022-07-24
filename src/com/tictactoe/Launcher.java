@@ -16,6 +16,8 @@
 
 package com.tictactoe;
 
+import com.tictactoe.service.*;
+
 /**
  * @author Kostya
  * @link https://github.com/kostia71/tic-tac-toe-2.git

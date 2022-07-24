@@ -14,17 +14,15 @@
  * limitations under the License.
  */
 
-package com.tictactoe;
+package com.tictactoe.service;
+
+import com.tictactoe.model.GameTable;
 
 /**
  * @author Kostya
  * @link https://github.com/kostia71/tic-tac-toe-2.git
  */
-public class DataPrinter {
-    
-    public void printMappingTable() {
-    }
-
-    public void printGameTable(GameTable gameTable) {
+public class ComputerMove {
+    public void make(GameTable gameTable) {
     }
 }

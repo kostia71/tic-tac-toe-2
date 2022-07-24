@@ -14,13 +14,11 @@
  * limitations under the License.
  */
 
-package com.tictactoe;
+package com.tictactoe.model;
 
 /**
  * @author Kostya
  * @link https://github.com/kostia71/tic-tac-toe-2.git
  */
-public class ComputerMove {
-    public void make(GameTable gameTable) {
-    }
+public class GameTable {
 }

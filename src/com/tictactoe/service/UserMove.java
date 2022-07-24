@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package com.tictactoe;
+package com.tictactoe.service;
+
+import com.tictactoe.model.GameTable;
 
 /**
  * @author Kostya
