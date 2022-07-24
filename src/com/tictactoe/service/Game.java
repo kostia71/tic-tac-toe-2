@@ -55,7 +55,7 @@ public class Game {
         while (true) {
             userMove.make(gameTable);
             dataPrinter.printGameTable(gameTable);
-            if (winnerVerifier.isUserWin()) {
+            if (winnerVerifier.isUserWin(gameTable)) {
                 System.out.println("YOU WIN!");
                 break;
 
@@ -67,7 +67,7 @@ public class Game {
             }
             computerMove.make(gameTable);
             dataPrinter.printGameTable(gameTable);
-            if (winnerVerifier.isComputerWin()) {
+            if (winnerVerifier.isComputerWin(gameTable)) {
                 System.out.println("COMPUTER WIN!");
                 break;
 
