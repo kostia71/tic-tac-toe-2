@@ -30,13 +30,13 @@ public class Game {
     private final ComputerMove computerMove;
     private final UserMove userMove;
     private final WinnerVerifier winnerVerifier;
-    private final DrowVerifier drowVerifier;
+    private final DrawVerifier drowVerifier;
 
     public Game(final DataPrinter dataPrinter,
                 final ComputerMove computerMove,
                 final UserMove userMove,
                 final WinnerVerifier winnerVerifier,
-                final DrowVerifier drowVerifier) {
+                final DrawVerifier drowVerifier) {
         this.dataPrinter = dataPrinter;
         this.computerMove = computerMove;
         this.userMove = userMove;
@@ -60,7 +60,7 @@ public class Game {
                 break;
 
             }
-            if (drowVerifier.isDrow(gameTable)) {
+            if (drowVerifier.isDraw(gameTable)) {
                 System.out.println("Sorry, DROW!");
                 break;
 
@@ -72,7 +72,7 @@ public class Game {
                 break;
 
             }
-            if (drowVerifier.isDrow(gameTable)) {
+            if (drowVerifier.isDraw(gameTable)) {
                 System.out.println("Sorry, DROW!");
                 break;
             }

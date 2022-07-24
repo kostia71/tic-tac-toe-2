@@ -16,14 +16,23 @@
 
 package com.tictactoe.service;
 
+import com.tictactoe.model.Cell;
 import com.tictactoe.model.GameTable;
 
 /**
  * @author Kostya
  * @link https://github.com/kostia71/tic-tac-toe-2.git
  */
-public class DrowVerifier {
-    public boolean isDrow(GameTable gameTable) {
-        return false;
+public class DrawVerifier {
+
+    public boolean isDraw(GameTable gameTable) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (gameTable.isEmpty(new Cell(i, j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
