@@ -20,25 +20,22 @@ package com.tictactoe.model;
  * @author Kostya
  * @link https://github.com/kostia71/tic-tac-toe-2.git
  */
-public class GameTable {
+public class Cell {
 
-    private final char[][] table = {
-            {' ', ' ', ' '},
-            {' ', ' ', ' '},
-            {' ', ' ', ' '}
-    };
+    private final int row;
 
-    public boolean isEmpty(final Cell cell) {
-        return table[cell.getRow()][cell.getCol()] == ' ';
+    private final int col;
+
+    public Cell(int row, int col) {
+        this.row = row;
+        this.col = col;
     }
 
-    public char getSign(final Cell cell) {
-        return table[cell.getRow()][cell.getCol()];
-
+    public int getRow() {
+        return row;
     }
 
-    public void setSign(final Cell cell, final char sign) {
-        table[cell.getRow()][cell.getCol()] = sign;
-
+    public int getCol() {
+        return col;
     }
 }
