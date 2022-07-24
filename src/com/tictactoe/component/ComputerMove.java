@@ -14,33 +14,28 @@
  * limitations under the License.
  */
 
-package com.tictactoe.service;
+package com.tictactoe.component;
 
 import com.tictactoe.model.Cell;
+import com.tictactoe.model.GameTable;
+
+import java.util.Random;
 
 /**
  * @author Kostya
  * @link https://github.com/kostia71/tic-tac-toe-2.git
  */
-public class CellNumberConverter {
-    private final char[][] mapping = {
-            {'7', '8', '9'},
-            {'4', '5', '6'},
-            {'1', '2', '3'}
-    };
-
-    public Cell toCell(final char number) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (mapping[i][j] == number) {
-                    return new Cell(i, j);
-                }
+public class ComputerMove {
+    public void make(GameTable gameTable) {
+        while (true) {
+            final Random random = new Random();
+            final int row = random.nextInt(3);
+            final int col = random.nextInt(3);
+            final Cell randomCell = new Cell(row, col);
+            if (gameTable.isEmpty(randomCell)) {
+                gameTable.setSign(randomCell, '0');
+                return;
             }
         }
-        return null;
-    }
-
-    public char toNumber(final Cell cell) {
-        return mapping[cell.getRow()][cell.getCol()];
     }
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tictactoe.service;
+package com.tictactoe.component;
 
 import com.tictactoe.model.GameTable;
 

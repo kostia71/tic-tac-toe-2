@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tictactoe.service;
+package com.tictactoe.component;
 
 import com.tictactoe.model.Cell;
 import com.tictactoe.model.GameTable;
@@ -27,8 +27,8 @@ public class DataPrinter {
 
     private final CellNumberConverter cellNumberConverter;
 
-    public DataPrinter(CellNumberConverter cellNumberConverter) {
-        this.cellNumberConverter = cellNumberConverter;
+    public DataPrinter(CellNumberConverter cellNumberConverterImpl) {
+        this.cellNumberConverter = cellNumberConverterImpl;
     }
 
     public void printMappingTable() {

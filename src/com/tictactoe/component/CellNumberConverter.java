@@ -14,26 +14,18 @@
  * limitations under the License.
  */
 
-package com.tictactoe;
+package com.tictactoe.component;
 
-import com.tictactoe.component.*;
-import com.tictactoe.component.keypad.DesktopNumericKeypadCellNumberConverter;
+import com.tictactoe.model.Cell;
 
 /**
  * @author Kostya
  * @link https://github.com/kostia71/tic-tac-toe-2.git
  */
-public final class Launcher {
+public interface CellNumberConverter {
 
-    public static void main(String[] args) {
-        final CellNumberConverter cellNumberConverter = new DesktopNumericKeypadCellNumberConverter();
-        final Game game = new Game(
-                new DataPrinter(cellNumberConverter),
-                new ComputerMove(),
-                new UserMove(cellNumberConverter),
-                new WinnerVerifier(),
-                new CellVerifier()
-        );
-        game.play();
-    }
+    Cell toCell(char number);
+
+    char toNumber(Cell cell);
+
 }

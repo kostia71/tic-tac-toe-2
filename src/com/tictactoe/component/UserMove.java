@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.tictactoe.service;
+package com.tictactoe.component;
 
 import com.tictactoe.model.Cell;
 import com.tictactoe.model.GameTable;
@@ -29,8 +29,8 @@ public class UserMove {
 
     private final CellNumberConverter cellNumberConverter;
 
-    public UserMove(CellNumberConverter cellNumberConverter) {
-        this.cellNumberConverter = cellNumberConverter;
+    public UserMove(CellNumberConverter cellNumberConverterImpl) {
+        this.cellNumberConverter = cellNumberConverterImpl;
     }
 
     public void make(GameTable gameTable) {
