@@ -23,9 +23,9 @@ import com.tictactoe.model.GameTable;
  * @author Kostya
  * @link https://github.com/kostia71/tic-tac-toe-2.git
  */
-public class DrawVerifier {
+public class CellVerifier {
 
-    public boolean isDraw(GameTable gameTable) {
+    public boolean allCellsFilled(GameTable gameTable) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (gameTable.isEmpty(new Cell(i, j))) {
