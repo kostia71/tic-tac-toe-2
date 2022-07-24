@@ -14,25 +14,33 @@
  * limitations under the License.
  */
 
-package com.tictactoe;
+package com.tictactoe.service;
 
-import com.tictactoe.service.*;
+import com.tictactoe.model.Cell;
 
 /**
  * @author Kostya
  * @link https://github.com/kostia71/tic-tac-toe-2.git
  */
-public final class Launcher {
+public class CellNumberConverter {
+    private final char[][] mapping = {
+            {'7', '8', '9'},
+            {'4', '5', '6'},
+            {'1', '2', '3'}
+    };
 
-    public static void main(String[] args) {
-        final CellNumberConverter cellNumberConverter = new CellNumberConverter();
-        final Game game = new Game(
-                new DataPrinter(cellNumberConverter),
-                new ComputerMove(),
-                new UserMove(cellNumberConverter),
-                new WinnerVerifier(),
-                new CellVerifier()
-        );
-        game.play();
+    public Cell toCell(final char number) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (mapping[i][j] == number) {
+                    return new Cell(i, j);
+                }
+            }
+        }
+        return null;
+    }
+
+    public char toNumber(final Cell cell) {
+        return mapping[cell.getRow()][cell.getCol()];
     }
 }
