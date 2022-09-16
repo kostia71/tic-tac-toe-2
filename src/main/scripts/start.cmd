@@ -21,5 +21,6 @@
 @echo off
 
 java -jar ${project.build.directory}.jar
+pause
 
 
