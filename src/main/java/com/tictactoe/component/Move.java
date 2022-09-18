@@ -16,30 +16,13 @@
 
 package com.tictactoe.component;
 
-import com.tictactoe.model.Cell;
 import com.tictactoe.model.GameTable;
-
-import java.util.Random;
-
-import static com.tictactoe.model.Sign.O;
 
 /**
  * @author Kostya
  * @link https://github.com/kostia71/tic-tac-toe-2.git
  */
-public class ComputerMove implements Move {
+public interface Move {
 
-    @Override
-    public void make(GameTable gameTable) {
-        while (true) {
-            final Random random = new Random();
-            final int row = random.nextInt(3);
-            final int col = random.nextInt(3);
-            final Cell randomCell = new Cell(row, col);
-            if (gameTable.isEmpty(randomCell)) {
-                gameTable.setSign(randomCell, O);
-                return;
-            }
-        }
-    }
+    void make(GameTable gameTable);
 }

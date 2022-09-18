@@ -27,7 +27,7 @@ import static com.tictactoe.model.Sign.X;
  * @author Kostya
  * @link https://github.com/kostia71/tic-tac-toe-2.git
  */
-public class UserMove {
+public class UserMove implements Move{
 
     private final CellNumberConverter cellNumberConverter;
 
@@ -35,6 +35,7 @@ public class UserMove {
         this.cellNumberConverter = cellNumberConverterImpl;
     }
 
+    @Override
     public void make(GameTable gameTable) {
         while (true) {
             final Cell cell = getUserInput();

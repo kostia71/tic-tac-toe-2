@@ -27,21 +27,25 @@ import java.util.Random;
 public class Game {
 
     private final DataPrinter dataPrinter;
+
     private final ComputerMove computerMove;
+
     private final UserMove userMove;
+
     private final WinnerVerifier winnerVerifier;
-    private final CellVerifier drowVerifier;
+
+    private final CellVerifier cellVerifier;
 
     public Game(final DataPrinter dataPrinter,
                 final ComputerMove computerMove,
                 final UserMove userMove,
                 final WinnerVerifier winnerVerifier,
-                final CellVerifier drowVerifier) {
+                final CellVerifier cellVerifier) {
         this.dataPrinter = dataPrinter;
         this.computerMove = computerMove;
         this.userMove = userMove;
         this.winnerVerifier = winnerVerifier;
-        this.drowVerifier = drowVerifier;
+        this.cellVerifier = cellVerifier;
     }
 
     public void play() {
@@ -52,28 +56,32 @@ public class Game {
             computerMove.make(gameTable);
             dataPrinter.printGameTable(gameTable);
         }
+        final Move[] moves = {userMove, computerMove};
         while (true) {
-            userMove.make(gameTable);
-            dataPrinter.printGameTable(gameTable);
-            if (winnerVerifier.isUserWin(gameTable)) {
-                System.out.println("YOU WIN!");
-                break;
-
+            boolean gameOver = false;
+            for (final Move move : moves) {
+                move.make(gameTable);
+                dataPrinter.printGameTable(gameTable);
+                if (move instanceof UserMove) {
+                    if (winnerVerifier.isUserWin(gameTable)) {
+                        System.out.println("YOU WIN!");
+                        gameOver = true;
+                        break;
+                    }
+                } else {
+                    if (winnerVerifier.isComputerWin(gameTable)) {
+                        System.out.println("COMPUTER WIN!");
+                        gameOver = true;
+                        break;
+                    }
+                }
+                if (cellVerifier.allCellsFilled(gameTable)) {
+                    System.out.println("Sorry, DRAW!");
+                    gameOver = true;
+                    break;
+                }
             }
-            if (drowVerifier.allCellsFilled(gameTable)) {
-                System.out.println("Sorry, DROW!");
-                break;
-
-            }
-            computerMove.make(gameTable);
-            dataPrinter.printGameTable(gameTable);
-            if (winnerVerifier.isComputerWin(gameTable)) {
-                System.out.println("COMPUTER WIN!");
-                break;
-
-            }
-            if (drowVerifier.allCellsFilled(gameTable)) {
-                System.out.println("Sorry, DROW!");
+            if (gameOver) {
                 break;
             }
         }
