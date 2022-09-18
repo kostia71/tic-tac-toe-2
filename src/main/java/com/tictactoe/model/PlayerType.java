@@ -14,24 +14,14 @@
  * limitations under the License.
  */
 
-package com.tictactoe;
-
-import com.tictactoe.component.*;
-import com.tictactoe.component.keypad.DesktopNumericKeypadCellNumberConverter;
-import com.tictactoe.model.Player;
-
-import static com.tictactoe.model.Sign.O;
-import static com.tictactoe.model.Sign.X;
+package com.tictactoe.model;
 
 /**
  * @author Kostya
  * @link https://github.com/kostia71/tic-tac-toe-2.git
  */
-public final class Launcher {
+public enum PlayerType {
 
-    public static void main(String[] args) {
-        final GameFactory gameFactory = new GameFactory(args);
-        final Game game = gameFactory.create();
-        game.play();
-    }
+    USER,
+    COMPUTER
 }
