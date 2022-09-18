@@ -20,7 +20,7 @@
 @rem ###################################################################################################################
 @echo off
 
-java -jar ${project.build.directory}.jar
-pause
+java -jar tic-tac-toe-1.0-SNAPSHOT.jar
+
 
 

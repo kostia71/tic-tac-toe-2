@@ -21,6 +21,8 @@ import com.tictactoe.model.GameTable;
 
 import java.util.Scanner;
 
+import static com.tictactoe.model.Sign.X;
+
 /**
  * @author Kostya
  * @link https://github.com/kostia71/tic-tac-toe-2.git
@@ -37,7 +39,7 @@ public class UserMove {
         while (true) {
             final Cell cell = getUserInput();
             if (gameTable.isEmpty(cell)) {
-                gameTable.setSign(cell, 'X');
+                gameTable.setSign(cell, X);
                 return;
             } else {
                 System.out.println("Can't make a move, because the cell is not free! Try again");
