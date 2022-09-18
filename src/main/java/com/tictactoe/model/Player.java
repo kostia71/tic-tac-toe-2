@@ -14,16 +14,35 @@
  * limitations under the License.
  */
 
-package com.tictactoe.component;
+package com.tictactoe.model;
 
-import com.tictactoe.model.GameTable;
-import com.tictactoe.model.Sign;
+import com.tictactoe.component.Move;
 
 /**
  * @author Kostya
  * @link https://github.com/kostia71/tic-tac-toe-2.git
  */
-public interface Move {
+public final class Player {
 
-    void make(GameTable gameTable, Sign sign);
+    private final Sign sign;
+
+    private final Move move;
+
+    public Player(Sign sign, Move move) {
+        this.sign = sign;
+        this.move = move;
+    }
+
+    public Sign getSign() {
+        return sign;
+    }
+
+    public void makeMove(GameTable gameTable) {
+        move.make(gameTable, sign);
+    }
+
+    @Override
+    public String toString() {
+        return "'" + sign + "'";
+    }
 }

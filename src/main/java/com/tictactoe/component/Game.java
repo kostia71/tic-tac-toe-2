@@ -17,6 +17,7 @@
 package com.tictactoe.component;
 
 import com.tictactoe.model.GameTable;
+import com.tictactoe.model.Player;
 
 import java.util.Random;
 
@@ -26,24 +27,28 @@ import java.util.Random;
  */
 public class Game {
 
+    private final boolean canSecondPlayerMakeFirstMove;
+
     private final DataPrinter dataPrinter;
 
-    private final ComputerMove computerMove;
+    private final Player player1;
 
-    private final UserMove userMove;
+    private final Player player2;
 
     private final WinnerVerifier winnerVerifier;
 
     private final CellVerifier cellVerifier;
 
-    public Game(final DataPrinter dataPrinter,
-                final ComputerMove computerMove,
-                final UserMove userMove,
-                final WinnerVerifier winnerVerifier,
-                final CellVerifier cellVerifier) {
+    public Game(boolean canSecondPlayerMakeFirstMove,
+                DataPrinter dataPrinter,
+                Player player1,
+                Player player2,
+                WinnerVerifier winnerVerifier,
+                CellVerifier cellVerifier) {
+        this.canSecondPlayerMakeFirstMove = canSecondPlayerMakeFirstMove;
         this.dataPrinter = dataPrinter;
-        this.computerMove = computerMove;
-        this.userMove = userMove;
+        this.player1 = player1;
+        this.player2 = player2;
         this.winnerVerifier = winnerVerifier;
         this.cellVerifier = cellVerifier;
     }
@@ -52,39 +57,30 @@ public class Game {
         System.out.println("Use the following mapping table to specify a cell using numbers from 1 to 9:");
         dataPrinter.printMappingTable();
         final GameTable gameTable = new GameTable();
-        if (new Random().nextBoolean()) {
-            computerMove.make(gameTable);
+        if (canSecondPlayerMakeFirstMove && new Random().nextBoolean()) {
+            player2.makeMove(gameTable);
             dataPrinter.printGameTable(gameTable);
         }
-        final Move[] moves = {userMove, computerMove};
+        final Player[] players = {player1, player2};
         while (true) {
-            boolean gameOver = false;
-            for (final Move move : moves) {
-                move.make(gameTable);
+            for (Player player : players) {
+                player.makeMove(gameTable);
                 dataPrinter.printGameTable(gameTable);
-                if (move instanceof UserMove) {
-                    if (winnerVerifier.isUserWin(gameTable)) {
-                        System.out.println("YOU WIN!");
-                        gameOver = true;
-                        break;
-                    }
-                } else {
-                    if (winnerVerifier.isComputerWin(gameTable)) {
-                        System.out.println("COMPUTER WIN!");
-                        gameOver = true;
-                        break;
-                    }
+                if (winnerVerifier.isWinner(gameTable, player)) {
+                    System.out.println(player + "WIN!");
+                    printGamrOver();
+                    return;
                 }
                 if (cellVerifier.allCellsFilled(gameTable)) {
                     System.out.println("Sorry, DRAW!");
-                    gameOver = true;
-                    break;
+                    printGamrOver();
+                    return;
                 }
             }
-            if (gameOver) {
-                break;
-            }
         }
+    }
+
+    private void printGamrOver() {
         System.out.println("GAME OVER!");
     }
 }

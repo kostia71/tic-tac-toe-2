@@ -18,6 +18,7 @@ package com.tictactoe.component;
 
 import com.tictactoe.model.Cell;
 import com.tictactoe.model.GameTable;
+import com.tictactoe.model.Sign;
 
 import java.util.Random;
 
@@ -30,14 +31,14 @@ import static com.tictactoe.model.Sign.O;
 public class ComputerMove implements Move {
 
     @Override
-    public void make(GameTable gameTable) {
+    public void make(GameTable gameTable, Sign sign) {
         while (true) {
             final Random random = new Random();
             final int row = random.nextInt(3);
             final int col = random.nextInt(3);
             final Cell randomCell = new Cell(row, col);
             if (gameTable.isEmpty(randomCell)) {
-                gameTable.setSign(randomCell, O);
+                gameTable.setSign(randomCell, sign);
                 return;
             }
         }

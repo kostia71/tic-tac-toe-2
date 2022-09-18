@@ -18,6 +18,7 @@ package com.tictactoe.component;
 
 import com.tictactoe.model.Cell;
 import com.tictactoe.model.GameTable;
+import com.tictactoe.model.Player;
 import com.tictactoe.model.Sign;
 
 import static com.tictactoe.model.Sign.O;
@@ -28,19 +29,12 @@ import static com.tictactoe.model.Sign.X;
  * @link https://github.com/kostia71/tic-tac-toe-2.git
  */
 public class WinnerVerifier {
-    public boolean isUserWin(final GameTable gameTable) {
-        return isWinner(gameTable, X);
-    }
-    public boolean isComputerWin(final GameTable gameTable) {
-        return isWinner(gameTable, O);
 
-    }
-
-    private boolean isWinner(GameTable gameTable, Sign sign) {
-        return isWinnerByRows(gameTable, sign) ||
-                isWinnerByCols(gameTable, sign) ||
-                isWinnerByMainDiagonal(gameTable, sign) ||
-                isWinnerBySecondaryDiagonal(gameTable, sign);
+    public boolean isWinner(GameTable gameTable, final Player player) {
+        return isWinnerByRows(gameTable, player.getSign()) ||
+                isWinnerByCols(gameTable, player.getSign()) ||
+                isWinnerByMainDiagonal(gameTable, player.getSign()) ||
+                isWinnerBySecondaryDiagonal(gameTable, player.getSign());
     }
 
     private boolean isWinnerByRows(GameTable gameTable, Sign sign) {
