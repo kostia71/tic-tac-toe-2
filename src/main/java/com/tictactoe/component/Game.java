@@ -29,7 +29,7 @@ public class Game {
 
     private final boolean canSecondPlayerMakeFirstMove;
 
-    private final DataPrinter dataPrinter;
+    private final DataPrinterImpl dataPrinter;
 
     private final Player player1;
 
@@ -40,7 +40,7 @@ public class Game {
     private final CellVerifier cellVerifier;
 
     public Game(boolean canSecondPlayerMakeFirstMove,
-                DataPrinter dataPrinter,
+                DataPrinterImpl dataPrinter,
                 Player player1,
                 Player player2,
                 WinnerVerifier winnerVerifier,

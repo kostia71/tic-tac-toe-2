@@ -16,19 +16,13 @@
 
 package com.tictactoe.component;
 
-import com.tictactoe.model.GameTable;
+import com.tictactoe.model.Cell;
 
 /**
  * @author Kostya
  * @link https://github.com/kostia71/tic-tac-toe-2.git
  */
-public interface DataPrinter {
+public interface UserInputReader {
 
-    void printInfoMessage(String message);
-
-    void printErrorMessage(String message);
-
-    void printMappingTable();
-
-    void printGameTable(GameTable gameTable);
+    Cell getUserInput();
 }
