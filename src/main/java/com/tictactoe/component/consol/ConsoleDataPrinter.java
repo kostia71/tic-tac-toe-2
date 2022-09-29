@@ -18,7 +18,6 @@ package com.tictactoe.component.consol;
 
 import com.tictactoe.component.CellNumberConverter;
 import com.tictactoe.component.DataPrinter;
-import com.tictactoe.component.DataPrinterImpl;
 import com.tictactoe.model.Cell;
 import com.tictactoe.model.GameTable;
 
@@ -57,7 +56,7 @@ public class ConsoleDataPrinter implements DataPrinter {
 
 
     }
-    private void print(final DataPrinterImpl.Lambda lambda) {
+    private void print(final Lambda lambda) {
         for (int i = 0; i < 3; i++) {
             System.out.println("-------------");
             for (int j = 0; j < 3; j++) {

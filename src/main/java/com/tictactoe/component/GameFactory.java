@@ -16,9 +16,12 @@
 
 package com.tictactoe.component;
 
+import com.tictactoe.component.consol.ConsoleDataPrinter;
+import com.tictactoe.component.consol.ConsoleUserInputReader;
 import com.tictactoe.component.keypad.DesktopNumericKeypadCellNumberConverter;
 import com.tictactoe.model.Player;
 import com.tictactoe.model.PlayerType;
+import com.tictactoe.swing.GameWindow;
 
 import java.util.Locale;
 
@@ -67,23 +70,27 @@ public class GameFactory {
 
 
     public Game create() {
-        final CellNumberConverter cellNumberConverter = new DesktopNumericKeypadCellNumberConverter();
+        final GameWindow gameWindow = new GameWindow();
+
+//        final CellNumberConverter cellNumberConverter = new DesktopNumericKeypadCellNumberConverter();
+        final DataPrinter dataPrinter = gameWindow;//new ConsoleDataPrinter(cellNumberConverter);
+        final UserInputReader userInputReader = gameWindow;//new ConsoleUserInputReader(cellNumberConverter, dataPrinter);
         final Player player1;
         if (playerType1 == USER) {
-            player1 = new Player(X, new UserMove(cellNumberConverter));
+            player1 = new Player(X, new UserMove(userInputReader, dataPrinter));
         } else {
             player1 = new Player(X, new ComputerMove());
         }
         final Player player2;
         if (playerType2 == USER) {
-            player2 = new Player(O, new UserMove(cellNumberConverter));
+            player2 = new Player(O, new UserMove(userInputReader, dataPrinter));
         } else {
             player2 = new Player(O, new ComputerMove());
         }
         final boolean canSecondPlayerMakeFirstMove = playerType1 != playerType2;
         return new Game(
                 canSecondPlayerMakeFirstMove,
-                new DataPrinterImpl(cellNumberConverter),
+                dataPrinter,
                 player1,
                 player2,
                 new WinnerVerifier(),
