@@ -19,6 +19,8 @@ package com.tictactoe.component.keypad;
 import com.tictactoe.model.Cell;
 import com.tictactoe.component.CellNumberConverter;
 
+import static java.lang.String.format;
+
 /**
  * @author Kostya
  * @link https://github.com/kostia71/tic-tac-toe-2.git
@@ -40,7 +42,9 @@ public class DesktopNumericKeypadCellNumberConverter implements CellNumberConver
                 }
             }
         }
-        return null;
+        throw new IllegalArgumentException(
+                format("Number parametr must be between '1' and '9'!", number)
+        );
     }
 
     @Override
