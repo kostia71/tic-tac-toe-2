@@ -30,17 +30,26 @@ import static com.tictactoe.model.Sign.O;
  */
 public class ComputerMove implements Move {
 
+    private final ComputerMoveStrategy[] strategies;
+
+    public ComputerMove(ComputerMoveStrategy[] strategies) {
+        this.strategies = strategies;
+    }
+
     @Override
     public void make(GameTable gameTable, Sign sign) {
-        while (true) {
-            final Random random = new Random();
-            final int row = random.nextInt(3);
-            final int col = random.nextInt(3);
-            final Cell randomCell = new Cell(row, col);
-            if (gameTable.isEmpty(randomCell)) {
-                gameTable.setSign(randomCell, sign);
+
+        for (ComputerMoveStrategy strategy : strategies) {
+            if (strategy.tryToMakeMove(gameTable, sign)) {
                 return;
             }
         }
+
+        throw new IllegalArgumentException(
+                "Game tabledoes not contain empty cells or invalid configuration for the computer move strategies"
+        );
+
+
     }
 }
+
