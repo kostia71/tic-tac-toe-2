@@ -43,12 +43,25 @@ public class DesktopNumericKeypadCellNumberConverter implements CellNumberConver
             }
         }
         throw new IllegalArgumentException(
-                format("Number parametr must be between '1' and '9'!", number)
+                format("Number parameter must be between '1' and '9'!", number)
         );
     }
 
     @Override
     public char toNumber(final Cell cell) {
-        return mapping[cell.getRow()][cell.getCol()];
+        try {
+            return mapping[cell.getRow()][cell.getCol()];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new IllegalArgumentException(
+                    format(
+                            "Row and col index must be between 0 and 2! Current row is %s and col is %s!",
+                            cell.getRow(), cell.getCol()
+                    )
+            );
+        }
     }
+
+//    public static void main(String[] args) {
+//        new DesktopNumericKeypadCellNumberConverter().toNumber(new Cell(0, 2));
+//    }
 }
